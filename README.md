@@ -1,3 +1,14 @@
+ ____                  _         _       _            
+|  _ \  ___  ___ _ __ (_)_ __   | | __ _| |_          
+| | | |/ _ \/ _ \ '_ \| | '_ \  | |/ _` | __|         
+| |_| |  __/  __/ |_) | | | | | | | (_| | |_          
+|____/ \___|\___| .__/|_|_| |_| |_|\__,_|\__|         
+ ____           |_|                  _              _ 
+| __ )  __ _  ___| | ___   _ _ __   | |_ ___   ___ | |
+|  _ \ / _` |/ __| |/ / | | | '_ \  | __/ _ \ / _ \| |
+| |_) | (_| | (__|   <| |_| | |_) | | || (_) | (_) | |
+|____/ \__,_|\___|_|\_\\__,_| .__/   \__\___/ \___/|_|
+                            |_|                       
 Deepin Backup Tool Tutorial / Tutorial de la Herramienta de Respaldo de Deepin
 
 Welcome to the Deepin Backup Tool tutorial! This guide will walk you through installing and using the tool to back up your important files effortlessly.
