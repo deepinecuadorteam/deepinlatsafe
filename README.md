@@ -20,8 +20,8 @@ Overview / Descripción General
 The Deepin Backup Tool automates the backup process for Deepin users by:
 La Herramienta de Respaldo de Deepin automatiza el proceso de respaldo para los usuarios de Deepin al:
 
-    Syncing essential directories (Documents, Pictures, Downloads) with rsync.
-    Sincronizar directorios esenciales (Documentos, Imágenes, Descargas) con rsync.
+    Syncing essential directories (Documents, Pictures, Downloads) with rsync. (user can add any folder)
+    Sincronizar directorios esenciales (Documentos, Imágenes, Descargas) con rsync. (EL usuario puede agregar cualquier carpeta)
     Compressing the backups into .tar.gz files.
     Comprimir los respaldos en archivos .tar.gz.
     Uploading the backups to cloud storage using rclone.
@@ -32,8 +32,8 @@ Prerequisites / Requisitos Previos
 Before you begin, ensure that you have the following installed:
 Antes de comenzar, asegúrate de tener lo siguiente instalado:
 
-    Deepin OS: This tool is specifically designed for Deepin users.
-    Deepin OS: Esta herramienta está diseñada específicamente para usuarios de Deepin.
+    Deepin OS: This tool was tested on deepin, but it should work on any linux distro.
+    Deepin OS: Esta herramienta fue testeada en deepin, pero deberia funcionar en cualquier distro linux
 
     rsync: Usually pre-installed on Deepin. Check by running rsync --version in the terminal.
     rsync: Usualmente preinstalado en Deepin. Verifica ejecutando rsync --version en la terminal.
