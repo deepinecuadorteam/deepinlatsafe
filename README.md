@@ -73,7 +73,7 @@ Hacer el Script Ejecutable: Ejecuta el siguiente comando para hacer el script ej
 
 bash
 
-    chmod +x deepinlatbackup.sh
+    chmod +x deepinlatsafe.sh
 
 Configuring rclone / Configuración de rclone
 
