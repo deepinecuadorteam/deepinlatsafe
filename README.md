@@ -1,162 +1,149 @@
-Deepin Backup Tool Tutorial / Tutorial de la Herramienta de Respaldo de Deepin
+🔄 Backup Script Tutorial (English & Spanish)
 
-Welcome to the Deepin Backup Tool tutorial! This guide will walk you through installing and using the tool to back up your important files effortlessly.
-¡Bienvenido al tutorial de la Herramienta de Respaldo de Deepin! Esta guía te llevará a través de la instalación y uso de la herramienta para respaldar tus archivos importantes de manera sencilla.
-Table of Contents / Tabla de Contenidos
+This tutorial will walk you through the process of using our backup script for automating local and cloud backups on Linux. The script is designed for Deepin users but can be adapted for any Linux distribution.
+🚀 Features:
 
-    Overview / Descripción General
-    Prerequisites / Requisitos Previos
-    Installation / Instalación
-    Configuring rclone / Configuración de rclone
-    Configuration / Configuración
-    Running the Backup / Ejecutando el Respaldo
-    Verifying Backups / Verificando Respaldos
-    Customization / Personalización
-    Troubleshooting / Solución de Problemas
-    Contributing / Contribuciones
+    Create backups of important folders.
+    Optional encryption using AES-256.
+    Upload backups to the cloud using rclone.
 
-Overview / Descripción General
+📋 Usage Instructions (English)
+1. Clone or Download the Script:
 
-The Deepin Backup Tool automates the backup process for Deepin users by:
-La Herramienta de Respaldo de Deepin automatiza el proceso de respaldo para los usuarios de Deepin al:
-
-    Syncing essential directories (Documents, Pictures, Downloads) with rsync. (user can add any folder)
-    Sincronizar directorios esenciales (Documentos, Imágenes, Descargas) con rsync. (EL usuario puede agregar cualquier carpeta)
-    Compressing the backups into .tar.gz files.
-    Comprimir los respaldos en archivos .tar.gz.
-    Uploading the backups to cloud storage using rclone.
-    Subir los respaldos a la nube utilizando rclone.
-
-Prerequisites / Requisitos Previos
-
-Before you begin, ensure that you have the following installed:
-Antes de comenzar, asegúrate de tener lo siguiente instalado:
-
-    Deepin OS: This tool was tested on deepin, but it should work on any linux distro.
-    Deepin OS: Esta herramienta fue testeada en deepin, pero deberia funcionar en cualquier distro linux
-
-    rsync: Usually pre-installed on Deepin. Check by running rsync --version in the terminal.
-    rsync: Usualmente preinstalado en Deepin. Verifica ejecutando rsync --version en la terminal.
-
-    tar: Also pre-installed. Check with tar --version.
-    tar: También preinstalado. Verifica con tar --version.
-
-    rclone: If not installed, you can install it using:
-    rclone: Si no está instalado, puedes instalarlo usando:
-
-    bash
-
-    sudo apt update
-    sudo apt install rsync tar rclone cron -y
-
-Installation / Instalación
-
-    Clone the Repository:
-    Open a terminal and run the following command to clone the repository:
-    Clonar el Repositorio: Abre una terminal y ejecuta el siguiente comando para clonar el repositorio:
-
-    bash
-
-git clone https://github.com/deepinecuadorteam/lateam-backup-tool.git
-
-Navigate to the Directory:
-Change to the directory where the script is located:
-Navegar al Directorio: Cambia al directorio donde se encuentra el script:
+First, clone the script from the GitHub repository or download it directly.
 
 bash
 
-cd lateam-backup-tool
-
-Make the Script Executable:
-Run the following command to make the script executable:
-Hacer el Script Ejecutable: Ejecuta el siguiente comando para hacer el script ejecutable:
-
-bash
-
+    git clone [https://github.com/your-username/backup-script.git](https://github.com/deepinecuadorteam/deepinlatsafe)
+    cd deepinlatsafe
     chmod +x deepinlatsafe.sh
 
-Configuring rclone / Configuración de rclone
+2. Run the Script:
 
-Before using the backup tool, you need to configure rclone to connect to your cloud storage:
-Antes de usar la herramienta de respaldo, necesitas configurar rclone para conectarte a tu almacenamiento en la nube:
+To run the script, open your terminal, navigate to the directory where the script is located, and execute it:
 
-    Run rclone Configuration:
-    In the terminal, run:
-    Ejecutar Configuración de rclone: En la terminal, ejecuta:
+bash
 
-    bash
+    ./deepinlatsafe.sh
+
+3. Choose Backup Type:
+
+You will be prompted to choose where to store your backup:
+
+    Option 1: Local storage
+    Option 2: Cloud storage (using rclone)
+
+Simply type 1 for local or 2 for cloud and press Enter.
+4. Encryption (Optional):
+
+You will also be asked if you want to encrypt the backup. If you choose yes, you will need to provide a password.
+5. Cloud Backup (if chosen):
+
+If you select cloud backup, ensure that you have rclone installed and configured. You can configure it by running:
+
+bash
 
     rclone config
 
-    Create a New Remote:
-        Choose n to create a new remote.
-        Enter a name for your remote (e.g., myclone).
-        Crear un Nuevo Remoto:
-        Elige n para crear un nuevo remoto.
-        Ingresa un nombre para tu remoto (por ejemplo, myclone).
+Once the backup is created, it will automatically upload to the specified cloud remote.
+⚙️ Customizing the Script (English)
+Adding or Removing Folders to Backup:
 
-    Select Cloud Storage Type:
-    Choose the type of cloud storage you want to use (e.g., Google Drive, Dropbox, etc.) by selecting the corresponding number from the list.
-    Seleccionar Tipo de Almacenamiento en la Nube: Elige el tipo de almacenamiento en la nube que deseas usar (por ejemplo, Google Drive, Dropbox, etc.) seleccionando el número correspondiente de la lista.
+The folders to be backed up are defined in the BACKUP_SOURCE array within the script. You can easily add or remove directories to customize your backup.
+Example:
 
-    Configure OAuth Credentials:
-    Follow the prompts to enter your client_id and client_secret if required. If you're unsure, you can usually leave these blank.
-    Configurar Credenciales de OAuth: Sigue las indicaciones para ingresar tu client_id y client_secret si es necesario. Si no estás seguro, generalmente puedes dejar estos campos en blanco.
+bash
 
-    Authorize rclone:
-    When prompted, you may need to follow a URL to authorize rclone to access your cloud storage. Copy the authorization code back into the terminal.
-    Autorizar rclone: Cuando se te pida, es posible que necesites seguir una URL para autorizar a rclone a acceder a tu almacenamiento en la nube. Copia el código de autorización de vuelta en la terminal.
+    BACKUP_SOURCE=("/home/$USER/Documents" "/home/$USER/Pictures" "/home/$USER/Downloads")
 
-    Finish Configuration:
-    Follow the remaining prompts to finish the configuration. You should see a confirmation message once complete.
-    Finalizar Configuración: Sigue las indicaciones restantes para finalizar la configuración. Deberías ver un mensaje de confirmación una vez que esté completo.
+To Add a Folder:
 
-Configuration / Configuración
+Simply append the desired directory to the array.
 
-Before running the tool, you may want to configure the backup settings in the script:
-Antes de ejecutar la herramienta, es posible que desees configurar los ajustes de respaldo en el script:
+bash
 
-    Edit the Script:
-    Open the script in a text editor:
-    Editar el Script: Abre el script en un editor de texto:
+    BACKUP_SOURCE=("/home/$USER/Documents" "/home/$USER/Pictures" "/home/$USER/Downloads" "/home/$USER/Videos")
 
-    bash
+To Remove a Folder:
 
-    nano deepinlatbackup.sh
+Just remove the folder path from the array.
 
-    Adjust Backup Source Directories:
-    Ensure the directories listed in the BACKUP_SOURCE variable include all the directories you wish to back up.
-    Ajustar Directorios de Origen del Respaldo: Asegúrate de que los directorios listados en la variable BACKUP_SOURCE incluyan todos los directorios que deseas respaldar.
+bash
 
-    Set the Backup Destination:
-    Modify BACKUP_DEST to your preferred backup location. The default is set to /home/Owens/backups.
-    Establecer la Destinación del Respaldo: Modifica BACKUP_DEST a tu ubicación preferida de respaldo. El valor por defecto es /home/Owens/backups.
+    BACKUP_SOURCE=("/home/$USER/Documents" "/home/$USER/Pictures")
 
-    Configure rclone:
-    Ensure you have set up rclone and configured the remote storage you want to use. Replace myclone in RCLONE_REMOTE with your rclone remote name.
-    Configurar rclone: Asegúrate de haber configurado rclone y el almacenamiento remoto que deseas usar. Reemplaza myclone en RCLONE_REMOTE con el nombre de tu remoto de rclone.
+📋 Instrucciones de Uso (Español)
+1. Clona o Descarga el Script:
 
-Running the Backup / Ejecutando el Respaldo
+Primero, clona el script desde el repositorio de GitHub o descárgalo directamente.
 
-    Execute the Script:
-    In the terminal, run the script to start the backup process:
-    Ejecutar el Script: En la terminal, ejecuta el script para comenzar el proceso de respaldo:
+bash
 
-    bash
+    git clone [https://github.com/your-username/backup-script.git](https://github.com/deepinecuadorteam/deepinlatsafe)
+    cd deepinlatsafe
+    chmod +x deepinlatsafe.sh
 
-    ./deepinlatbackup.sh
+2. Ejecuta el Script:
 
-    Monitor Progress:
-    You will see messages indicating the progress of the backup, including syncing, compressing, and uploading to the cloud.
-    Monitorear el Progreso: Verás mensajes que indican el progreso del respaldo, incluyendo sincronización, compresión y carga a la nube.
+Para ejecutar el script, abre tu terminal, navega al directorio donde está ubicado el script y ejecútalo:
 
-    Completion Message:
-    Once the backup is complete, you will see a confirmation message.
-    Mensaje de Finalización: Una vez que el respaldo esté completo, verás un mensaje de confirmación.
+bash
 
-Verifying Backups / Verificando Respaldos
+    ./deepinlatsafe.sh
 
-To verify that your backups were successful, check the following:
-Para verificar que tus respaldos fueron exitosos, verifica lo siguiente:
+3. Elige el Tipo de Respaldo:
 
-    Local Backup: Navigate to your specified backup directory (`/home/O
+Se te pedirá que elijas dónde deseas almacenar tu respaldo:
+
+    Opción 1: Almacenamiento local
+    Opción 2: Almacenamiento en la nube (usando rclone)
+
+Simplemente escribe 1 para local o 2 para la nube y presiona Enter.
+4. Encriptación (Opcional):
+
+También se te preguntará si deseas encriptar el respaldo. Si eliges yes, deberás proporcionar una contraseña.
+5. Respaldo en la Nube (si lo seleccionaste):
+
+Si seleccionas respaldo en la nube, asegúrate de tener rclone instalado y configurado. Puedes configurarlo ejecutando:
+
+bash
+
+rclone config
+
+Una vez que el respaldo esté creado, se subirá automáticamente a la nube especificada.
+⚙️ Personalización del Script 
+Añadir o Eliminar Carpetas para Respaldar:
+
+Las carpetas a respaldar están definidas en la variable BACKUP_SOURCE dentro del script. Puedes añadir o eliminar directorios fácilmente para personalizar tu respaldo.
+Ejemplo:
+
+bash
+
+    BACKUP_SOURCE=("/home/$USER/Documents" "/home/$USER/Pictures" "/home/$USER/Downloads")
+
+Para Añadir una Carpeta:
+
+Simplemente añade el directorio deseado al arreglo.
+
+bash
+
+    BACKUP_SOURCE=("/home/$USER/Documents" "/home/$USER/Pictures" "/home/$USER/Downloads" "/home/$USER/Videos")
+
+Para Eliminar una Carpeta:
+
+Solo elimina la ruta de la carpeta del arreglo.
+
+bash
+
+    BACKUP_SOURCE=("/home/$USER/Documents" "/home/$USER/Pictures")
+
+
+💻 Contributing to the Project / Contribuye al Proyecto 🌍
+
+We warmly welcome contributions from the community! Whether you're a seasoned developer, a passionate Linux user, or someone new looking to make a difference, your input is invaluable to this project. 
+Feel free to contribute by:
+
+    Adding new features 🆕
+    Fixing bugs 🐞
+    Improving the documentation 📖
+    Translating the script/tutorial into other languages 🌐
