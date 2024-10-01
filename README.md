@@ -3,9 +3,9 @@
 This tutorial will walk you through the process of using our backup script for automating local and cloud backups on Linux. The script is designed for Deepin users but can be adapted for any Linux distribution.
 🚀 Features:
 
-    Create backups of important folders.
-    Optional encryption using AES-256.
-    Upload backups to the cloud using rclone.
+Create backups of important folders.
+Optional encryption using AES-256.
+Upload backups to the cloud using rclone.
 
 📋 Usage Instructions (English)
 1. Clone or Download the Script:
