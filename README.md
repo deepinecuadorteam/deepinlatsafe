@@ -15,7 +15,7 @@ First, clone the script from the GitHub repository or download it directly.
 
 bash
 
-    git clone [https://github.com/your-username/backup-script.git](https://github.com/deepinecuadorteam/deepinlatsafe)
+    git clone https://github.com/deepinecuadorteam/deepinlatsafe
     cd deepinlatsafe
     chmod +x deepinlatsafe.sh
 
