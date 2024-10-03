@@ -1,7 +1,8 @@
 🔄 Backup Script Tutorial (English & Spanish)
 
 This tutorial will walk you through the process of using our backup script for automating local and cloud backups on Linux. The script is designed for Deepin users but can be adapted for any Linux distribution.
-🚀 Features:
+
+Features:
 
 Create backups of important folders.
 Optional encryption using AES-256.
